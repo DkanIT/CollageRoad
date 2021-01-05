@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
       $_SESSION['usertype'] = $qry['usertype'];
       $_SESSION['fname'] = $qry['fname'];
       $_SESSION['lname'] = $qry['lname'];
+      $_SESSION['kullanıcıid'] = $qry['id'];
       if(!empty($_POST["remember"]))
        {
         setcookie ("username",$user,time()+ (10 * 365 * 24 * 60 * 60));

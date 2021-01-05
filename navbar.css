@@ -1,0 +1,45 @@
+.topnav {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 6px 20px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+background-color: aqua;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: darkblue;
+  color: white;
+}
+.topnav-right {
+  float: right;
+  background-color: blue;
+}
+.user {
+    position: absolute;
+    top:60px;
+    right: 25px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.25em;
+    text-transform: capitalize;
+    text-decoration: underline overline;
+
+}
+.rightbtt{
+  position: absolute;
+  top: 60px;
+  right:10px:
+}

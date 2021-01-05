@@ -2,56 +2,74 @@
 <html>
 <head>
 <title>Dues</title>
-<?php include "DbConn.php"; ?>
+<?php include "DbConn.php";
+session_start();?>
 <link rel="stylesheet" href="background.css">
+<link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <body>
 
 <style>
+body{
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
 }
 th {
-background-color: black;
+background-color: darkblue;
   color: white;
   padding: 10px;}
 
 td {
-  border: 1px solid #dddddd;
+  border: 1px color:Black ;
   text-align: center;
   padding: 8px;
-}
-
-tr:nth-child(even) {
   background-color: #dddddd;
+}
+.logout {
+  position: absolute;
+    border: 1px solid aqua;
+    top: 70px;
+    right: 15px;
 }
 
 
 </style>
-<h1 style="color:White;"> <Strong> Şenerler Apt. Management Page</h1>
-
-<p style="color:White";>Welcome our webpage which you can follow our announcements and changes.</p>
-
-
-<div style="border: 2px solid black;color:white;padding:10px;">
-
-  <a><?php echo( "<button onclick= \"location.href='Main.php'\">Main</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Dues.php'\">Dues</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Administration.php'\">Administration</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Requests.php'\">Requests</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Expenses.php'\">Expenses</button>");?></a>
-
-
+<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
+<p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+<div class="user"><?php
+echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 </div>
 
 
-<h2 style="color:red;"> Dues in 2020 </h2>
+  <div class="topnav" style="border: 2px solid black;color:white;padding:10px;">
+
+    <a href="Main.php">Main</a>
+
+    <a class="active" href="Dues.php">Dues</a>
+
+    <a href="Administration.php">Administration</a>
+
+    <a href="Requests.php">Request</a>
+
+    <a href="Expenses.php">Expenses</a>
+
+
+    <div class="topnav-right" style="right::0;">
+    <a  href="Login.php">Logout</a>
+
+  </div>
+
+  </div>
+
+<h2 style="color:red;margin-top:20px;"> Dues in 2021 </h2>
 
 
 
@@ -66,7 +84,7 @@ tr:nth-child(even) {
 
 
           echo "<table border='1' class='center' >";
-            echo "<th>" ."</th>" ;
+          echo "<th>" .'RoomNumber' ."</th>" ;
           echo "<th>" .'FirstName' ."</th>" ;
           echo "<th>" .'LastName' ."</th>" ;
           echo "<th>" .'January' ."</th>" ;

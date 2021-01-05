@@ -3,72 +3,12 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="background.css">
+  <link rel="stylesheet" href="login.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
 session_start();
 ?>
-<style>
 
-
-
-label { display: block; width: 100px; }
-
-
-form {border: 3px solid #f1f1f1;}
-
-input[type=text], input[type=password] {
-
-  width: 15%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color:#3396FF;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 5%;
-}
-
-
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  ;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 240px;
- height: 240px;
-  border-radius: 40%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-
-</style>
 </head>
 
 
@@ -96,7 +36,7 @@ span.psw {
 
     <div class="form-group">
 
-         <label for="rememberme">Remember me</label>
+         <label style="color:White;" for="rememberme">Remember me</label>
          <input type="checkbox" name="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> />
         </div>
 

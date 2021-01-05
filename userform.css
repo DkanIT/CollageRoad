@@ -1,0 +1,62 @@
+
+.form {
+font-family: arial, sans-serif;
+border-collapse: collapse;
+font-size: 20px;
+position: absolute;
+text-align: center;
+font-size: 18px;
+border-style: solid;
+border-width:18px;
+border: 12px solid;
+  border-image-slice: 1;
+
+  border-image-source: linear-gradient(to right, darkblue, aqua);
+background-image:linear-gradient(to left ,aqua, darkblue);
+position: absolute;
+top:30%;
+left: 60%;
+width: 35%;
+height: 65%;
+text-align: center;
+
+
+}
+.delete {
+  padding: 7px 10px;
+  background-color: darkblue;
+  float: left;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 20px;
+
+}
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: darkblue;
+}
+.signupbtn {
+  padding: 14px 20px;
+  background-color: aqua;
+}
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+  bottom: 10%;
+  text-align: center;
+  font-family: fantasy;
+  font-size: 20px;
+  text-color:white;
+}
+
+h2 {
+  background-color: aqua;
+  text-align: center;
+
+}
+.logout {
+  position: absolute;
+    border: 1px solid aqua;
+    top: 70px;
+    right: 15px;
+}

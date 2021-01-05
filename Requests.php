@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-
-
-<?php include "DbConn.php";
-session_start();?>
 <html>
 <head>
   <link rel="stylesheet" href="background.css">
+  <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <?php include "DbConn.php";
+  session_start();?>
 <title>Request</title>
 <style>
-label { display: block; width: 100px; }
+body{
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.logout {
+  position: absolute;
+    border: 1px solid aqua;
+    top: 70px;
+    right: 15px;
+}
+p2{
+  font-family:cursive;
+  color:black;
+  margin-left: 30px;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+h2 {
+  text-align: center;
+  font-size: 1.7em;
+  text-decoration: underline;
+  font-family: sans-serif;
+  font-weight: bold;
+
+}
+h13{
+color:White;
+margin-left: 10px;
+text-transform: capitalize;
+font-weight: bold;
+
+}
+
+
 
 table {
   font-family: arial, sans-serif;
@@ -33,57 +67,71 @@ margin-left: auto;
 margin-right: auto;
 }
 
+textarea {
+  resize: none;
+  height: 80px;
+  width: 320px;
+}
+.adddiv{
+  margin-top: 20px;
+  border-color: White;
+
+}
+
 </style>
 
 <body>
 
-<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page</Strong></h1>
+    <h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
+    <p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+    <div class="user"><?php
+    echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
-<p style="color:White;"> <Strong> Welcome our webpage which you can follow our announcements and changes.</p>
+    </div>
+
+
+      <div class="topnav" style="border: 2px solid black;color:white;padding:10px;">
+
+        <a href="Main.php">Main</a>
+
+        <a href="Dues.php">Dues</a>
+
+        <a href="Administration.php">Administration</a>
+
+        <a class="active" href="Requests.php">Request</a>
+
+        <a href="Expenses.php">Expenses</a>
+
+
+
+
+        <div class="topnav-right" style="right::0;">
+        <a  href="Login.php">Logout</a>
+
+      </div>
+
+      </div>
 
 <div>
-
-
-
-
-  <div style="border: 2px solid black;color:white;padding:10px;">
-
-
-  <a><?php echo( "<button onclick= \"location.href='Main.php'\">Main</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Dues.php'\">Dues</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Administration.php'\">Administration</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Requests.php'\">Requests</button>");?></a>
-
-  <a><?php echo( "<button onclick= \"location.href='Expenses.php'\">Expenses</button>");?></a>
-
-
-</div>
-
-<div>
+<div class="adddiv">
+  <h2 style="color:Black;"> <Strong>Request</Strong></h2>
 
         <?php
-          echo "<table border='1' class='center'>";
-            echo "<th>" .'Date' ."</th>" ;
-          echo "<th>" .'Name' ."</th>" ;
-            echo "<th>".'Last Name'. "</th>";
-            echo "<th>".'Request'. "</th>"."<br>";
 
 
 
-        $sql = "SELECT date,fname,lname,req FROM request ORDER BY reqid DESC";
+
+        $sql = "SELECT * FROM request ORDER BY reqid DESC";
         $result = mysqli_query($conn, $sql);
   echo "<tr>";
-        while ($row = mysqli_fetch_assoc($result)) {
-
-    foreach ($row as $field => $value) {
-        echo "<td>" . $value . "</td>";
-    }
-    echo "</tr>";
-}
-echo "</table>";
+  if ($result->num_rows > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo "<h13>".  "Send By: ".$row["fname"] ." ".$row["lname"] ." >> Date: " . $row["date"]."</h13>". "<br>"."<br>" ;
+             echo "<p2>" . $row["req"]. "</p2>"."<hr>" ;
+            }}
+            else {
+            echo "0 results";
+            }
 
 ?>
 </div>
@@ -93,12 +141,12 @@ echo "</table>";
 
 
 
-<div style="position: absolute; bottom: 5px">
+<div style="position: absolute; right: 10px;bottom: 10px">
 
 <form action="Requests.php" method = "post">
 
-  <label for="req" style="color:White";>Request:</label><br>
-  <input type="text" id="req" name="req"   maxlength="120" size="150" value=" "><br><br>
+  <label for="req" style="color:White";><center>Request Text Area</center></label><br>
+  <textarea type="text" id="req" name="req"   maxlength="120" size="150" value=" "></textarea><br><br>
   <button type="submit" name="submit"> SUBMİT </button>
 
 </form>
