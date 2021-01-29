@@ -110,24 +110,24 @@ margin-left:140px;
   <div class="row">
   <div class="columnl">
     <div id="usertable">
-              <h1 style="color:Black;margin-top:30px;" > <center><b>Member List</b> </center></h1>
+              <h1 style="color:Black;margin-top:30px;" > <center><b>User List</b> </center></h1>
             <button style="color:white;" class="delete" onclick="location.href='AdminDeletedUsers.php'" >Deleted Users</button>
             <?php
 
               echo "<table border='1' class='center' >";
               echo "<th>" .'ID' ."</th>" ;
               echo "<th>" .'Level' ."</th>" ;
-              echo "<th>" .'Doors' ."</th>" ;
+              echo "<th>" .'Door Number' ."</th>" ;
               echo "<th>" .'Username' ."</th>" ;
               echo "<th>" .'First Name' ."</th>" ;
               echo "<th>" .'Last Name' ."</th>" ;
               echo "<th>".'Mail'. "</th>" ;
               echo "<th>".'Phone'. "</th>";
-              echo "<th>".'StartDate'. "</th>";
+              echo "<th>".'Create Date'. "</th>";
               echo "<th>".'Edit'."</th>";
               echo "<th>".'Delete'."</th>"."<br>";
 
-            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,date FROM userinfo ORDER BY usertype ASC,doornumber ASC";
+            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date FROM userinfo WHERE status='active' ORDER BY usertype ASC,doornumber ASC";
             $result = mysqli_query($conn, $sql);
       echo "<tr>";
             while ($row = mysqli_fetch_assoc($result)) {
@@ -143,7 +143,7 @@ margin-left:140px;
   </td>
 <td>
 
-    <a href="AdminAction.php?id=<?php echo $row['id'];?>">
+    <a href="AdminDelete.php?id=<?php echo $row['id'];?>">
     <button value="delete" class="btn btn-danger btn-xs" onClick="return confirm('Kullanıcıyı silmek istediğinizden emin misiniz?');"><i class="fa fa-trash-o "></i></button></a>
 
   </td>
@@ -177,6 +177,7 @@ margin-left:140px;
   $lname=$row['lname'];
   $mail=$row['mail'];
   $phone=$row['phone'];
+
   } ?>
 
 
@@ -185,12 +186,12 @@ margin-left:140px;
 
     <div class="form">
 
-    <form action="AdminAction.php" method = "post">
+    <form action="AdminAction.php?id=<?php echo $row['id'];?>" method = "post">
 
 
       <input type="radio" id="admin" name="usertype" value="admin">
       <label for="admin">Admin</label>
-      <input type="radio" id="user" name="usertype" value="user">
+      <input type="radio" id="user" name="usertype" value="user" checked>
       <label for="user">User</label><br><br>
 
 

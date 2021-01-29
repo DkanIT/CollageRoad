@@ -120,7 +120,7 @@ $result = mysqli_query($conn, $sql);
 <h4>Total Collected Dues >> <?php echo $duearray['price']  ?></h2>
 <h4>CurrentBalance >> <?php echo $CurrentBalance; ?></h2>
   <!--Expense details-->
-  <h2 style="color:DarkBlue;margin-top: 200px;text-align:center;"> Expense Details </h2>
+  <h2 style="color:DarkBlue;margin-top: 200px;margin-right: 10px;text-align:center;"> Expense Details </h2>
   <?php if(isset($_GET['expenseid'])){
     $detailsid=$_GET['expenseid'];
       echo "<table border='1' class='center' >";

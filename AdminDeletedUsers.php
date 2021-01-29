@@ -118,23 +118,23 @@ p2{
   <div class="row">
   <div class="columnl">
     <div id="usertable">
-            <h1 style="color:Black;margin-top:30px;" > <center><b>Member List</b> </center></h1>
+            <h1 style="color:Black;margin-top:30px;" > <center><b>Deleted User List</b> </center></h1>
             <button style="color:white;" class="delete" onclick="location.href='AdminUsers.php'" >Current Users</button>
             <?php
 
               echo "<table border='1' class='center' >";
               echo "<th>" .'ID' ."</th>" ;
               echo "<th>" .'Level' ."</th>" ;
-              echo "<th>" .'Doors' ."</th>" ;
+              echo "<th>" .'DoorNumber' ."</th>" ;
               echo "<th>" .'Username' ."</th>" ;
               echo "<th>" .'First Name' ."</th>" ;
               echo "<th>" .'Last Name' ."</th>" ;
               echo "<th>".'Mail'. "</th>" ;
               echo "<th>".'Phone'. "</th>";
-              echo "<th>".'StartDate'. "</th>";
-              echo "<th>".'DeleteDate'. "</th>";
+              echo "<th>".'Create Date'. "</th>";
+              echo "<th>".'Delete Date'. "</th>";
 
-            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,date,lastdate FROM deletedusers ORDER BY usertype ASC,doornumber ASC";
+              $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date,delete_date FROM userinfo WHERE status='inactive' ORDER BY usertype ASC,doornumber ASC";
             $result = mysqli_query($conn, $sql);
       echo "<tr>";
             while ($row = mysqli_fetch_assoc($result)) {
