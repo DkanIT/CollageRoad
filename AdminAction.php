@@ -87,7 +87,7 @@
  }
 
 else{
-		 $sql = "UPDATE userinfo SET doornumber='$doornumber', username='$uname', password='$pass', fname='$fname', lname='$lname', mail='$mail', phone='$phone'  WHERE id='$uid'";
+		 $sql = "UPDATE userinfo SET doornumber='$doornumber', username='$uname', password=md5('$pass'), fname='$fname', lname='$lname', mail='$mail', phone='$phone'  WHERE id='$uid'";
 		 $query_run = mysqli_query($conn,$sql);
 		 header("Location:AdminUsers.php?error=User Updated.");
 }

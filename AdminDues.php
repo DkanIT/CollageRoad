@@ -8,90 +8,23 @@
   <link rel="stylesheet" href="background.css">
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-  table {
-    font-family: arial, sans-serif;
-    text-align: center;
-    border-collapse: collapse;
-    width:70%;
-    margin-left: 60px;
-  }
+
   body{
     width: 98%;
     margin-left: auto;
     margin-right: auto;
   }
-  th {
-    text-align: center;
-  background-color: darkblue;
-    color: white;
-    padding: 10px;}
 
-
-    td {
-      border: 1px color:Black ;
-      text-align: center;
-      padding: 8px;
-      background-color: #dddddd;
-    }
     .logout {
       position: absolute;
         border: 1px solid aqua;
         top: 70px;
         right: 15px;
     }
-    .column {
-  float: left;
-
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: flex;
-  clear: both;
-}
-.left {
-  width: 75%;
-}
-
-.right {
-  height: 75%;
-  width: 25%;
-
-}
-input {
-    text-align: center;
-}
-
-form {
-
-
-      border: 5px solid;
-      border-image-slice: 1;
-      border-image-source: linear-gradient(to right, darkblue, aqua);
-      margin-top: 120px;
-      margin-right: 90px;
-      margin-left: 90px;
-      border-image-outset: 5px;
-      }
-
-      input, textarea, select, button {
-        width : 120px;
-        padding: 0;
-        margin: 20;
-        box-sizing: border-box;
-      }
-      .signupbtn {
-
-
-        height: 50px;
-        background-color: darkblue;
-        border-image-slice: 1;
-        width: 100%;
-        background-image:linear-gradient(to left ,aqua, darkblue);
-      }
 
   </style>
 
@@ -129,136 +62,206 @@ form {
 
 
 
-<h2 style="color:red;margin-top:20px;"> Dues in 2021 </h2>
+    <br><br>
+     <div class="row">
+       <div class="col-md-4">
+
+       </div>
 
 
-<div class="row">
-<div class="column left">
-        <h1 style="color:Black" ; > <center><strong><b>Payment Board</b> </strong></center></h1>
+       <div class="col-md-8" style="margin-left:15%;">
+         <div class="container-fluid">
+         <style>
+         	input[type=checkbox]
+         {
+           /* Double-sized Checkboxes */
+           -ms-transform: scale(1.5); /* IE */
+           -moz-transform: scale(1.5); /* FF */
+           -webkit-transform: scale(1.5); /* Safari and Chrome */
+           -o-transform: scale(1.5); /* Opera */
+           transform: scale(1.5);
+           padding: 10px;
+         }
+         </style>
+         	<div class="col-lg-12">
+         		<div class="row mb-4 mt-4">
+         			<div class="col-md-12">
 
-        <?php
+         			</div>
+         		</div>
+         		<div class="row">
+         			<!-- FORM Panel -->
 
+         			<!-- Table Panel -->
+               <?php if (isset($_GET['error'])) { ?>
+                          <p style="z-index:1;margin-left:43%;color:red"class="error"><?php echo $_GET['error']; } ?></p>
+         			<div class="col-md-12">
 
-          echo "<table border='1' class='center' >";
-          echo "<th>" .'DoorNumber' ."</th>" ;
-          echo "<th>" .'FirstName' ."</th>" ;
-          echo "<th>" .'LastName' ."</th>" ;
-          echo "<th>" .'January' ."</th>" ;
-          echo "<th>" .'February' ."</th>" ;
-          echo "<th>" .'March' ."</th>" ;
-          echo "<th>" .'April' ."</th>" ;
-          echo "<th>" .'May' ."</th>" ;
-          echo "<th>" .'June' ."</th>" ;
-          echo "<th>" .'July' ."</th>" ;
-          echo "<th>" .'August' ."</th>" ;
-          echo "<th>" .'September' ."</th>" ;
-          echo "<th>" .'October' ."</th>" ;
-          echo "<th>" .'November' ."</th>" ;
-          echo "<th>" .'December' ."</th>" ;
+         				<div class="card" style="margin-top:-4%;  background-color: #e5eef4 !important;">
+         					<div class="card-header">
+                     <h3><b>Borç Ekle<b></h3>
+         						<span class="">
+                       <form class="" action="addbill.php" method="post">
 
+                         <div class="col-md-2 offset-md-3">
+                   					<label for="" class="control-label">Tarih</label>
+                     					<input type="month" value="<?php echo isset($_GET['billing_date']) ? date('Y-m',strtotime($_GET['billing_date'].'-01')) :date('Y-m'); ?>" class="form-control" name="billing_date">
+                   			</div>
+                         <div class="col-md-2 offset-md-5" style="margin-top:-4.3em;">
+                           <label for="" class="control-label">Miktar</label>
+                           <input type="text" class="form-control" name="amount" id="exampleInputPassword1" placeholder="₺">
+                         </div>
+                         <div class="col-md-2 offset-md-7" style="margin-top:-4.3em;">
+                           <label for="" class="control-label">Açıklama</label>
+                           <input type="text" class="form-control" name="detail" id="exampleInputPassword1" placeholder="Açıklama">
 
+                         </div>
+                         <div class="col-md-7 offset-md-9" style="margin-top:-2em;">
+                           <button style="" class="btn btn-primary btn-block btn-sm col-sm-2" type="" id="new_billing" onClick="return confirm('Borç eklemek istediğinize emin misiniz?');"> <i class="fa fa-plus">&nbsp Borç Ekle</i></button>
+                         </div>
 
-          $sql = "SELECT * FROM dues  ";
-  $result = mysqli_query($conn, $sql);
-  echo "<tr>";
-while ($row = mysqli_fetch_assoc($result)) {
-  foreach ($row as $field => $value) {
-      echo "<td>" . $value . "</td>";
+                         </form>
+         				</span>
+         					</div>
+         					<div class="card-body">
+                       <h3><b>Aylık Aidat Listesi<b></h3>
+         						<div class="row form-group">
+                       <div class="col-md-8 offset-md-3">
+                         <form class="" action="filter-month.php" method="post">
+                         <div class="col-md-4 offset-md-3">
+                           <label for="" class="control-label">Tarih</label>
+                           <input type="month" class="form-control" name="month"  value="<?php echo isset($_GET['month']) ? date('Y-m',strtotime($_GET['month'].'-01')) :date('Y-m'); ?>" required>
+                         </div>
+                         <div class="col-md-2 offset-md-7" style="margin-top:-4.3em;">
+                               <label for="" class="control-label">&nbsp</label>
+                               <button class="btn btn-primary btn-block " id="filter" type="">Filtrele</button>
+                               </div>
+                           </form>
+                         </div>
 
-  }
-  echo "</tr>";
-}
-echo "</table>";
+                       </div>
+         						<hr>
+         						<table class="table table-bordered table-condensed table-hover">
+         							<!-- <colgroup>
+         								<col width="2%">
+         								<col width="10%">
+         								<col width="10%">
+                         class="btn btn-primary btn-block"
+         								<col width="15%">
+         								<col width="20%">
+         								<col width="15%">
+         								<col width="10%">
+         							</colgroup> -->
+         							<thead>
+         								<tr>
 
-?>
-</div>
-
-<div class="column right">
-  <?php  $sql = "SELECT doornumber FROM dues ORDER BY doornumber ASC";
-  $result = mysqli_query($conn, $sql);
-?>
-
-<form action="AdminDues.php" method ="post">
-<Strong>
-  <br>
-  <label for="doornumber">Door Number : </label>
-  <Select  id="doornumber" name="doornumber" ><br><br>
-  <?php
-  while ($row = mysqli_fetch_array($result)) {
-
-    ?>
-    <option> <?php echo $row['doornumber']; ?></option>
-    <?php
-
-
-}
-
-?>
-</select><br><br>
-  <label for="month">Select month : </label>
-  <select tpye="text"; id="month" name="month" value="Month">
-<option value="January">January</option>
-<option value="February">February</option>
-<option value="March">March</option>
-<option value="April">April</option>
-<option value="May">May</option>
-<option value="June">June</option>
-<option value="July">July</option>
-<option value="August">August</option>
-<option value="September">September</option>
-<option value="October">October</option>
-<option value="November">November</option>
-<option value="December">December</option>
-
-  </select>
-
-<br><br>
-  <label for="payment">Payment : </label>
-  <select id="payment" name="payment">
-    <option value="Unpaid">Unpaid</option>
-     <option value="Paid">Paid</option>
-       </select>
-
-      <br><br> <button type="submit" name="submit" class="signupbtn"><Strong>Update Payment Status</Strong> </button>
-      <br><h5 style="color:White;margin-left:45px;"><Strong> <?php if (isset($_GET['error'])) {
-         echo $_GET['error'];
-       } ?>  </Strong></h5>
-</Strong>
-</form>
-
-<?php
-
-
-if(isset($_POST['submit'])){
-      $ay=$_POST['month'];
-      $doornumber=$_POST['doornumber'];
-      $payment=$_POST['payment'];
-
-
-        $aidat=50;
-              $sql = mysqli_query($conn,"UPDATE dues SET $ay='$payment' WHERE doornumber='$doornumber'");
-
-              $sql = mysqli_query($conn,"SELECT * FROM dues");
-              $row = mysqli_fetch_array($result);
-                echo $row[$ay];
+         									<th class="">Tarih</th>
+         									<th class="">Kullanıcı</th>
+         									<th class="">Miktarı</th>
+         									<th class="">Detay</th>
+         									<th class="">Durum</th>
+         									<th class="">Ödeme Tarihi</th>
+         									<th class="text-center">Ödeme</th>
+         								</tr>
+         							</thead>
+         							<tbody>
+         								<?php
+         								$month = isset($_GET['month']) ? date('Y-m',strtotime($_GET['month'].'-01')) : date('Y-m') ;
+         								$billing = $conn->query("SELECT b.*,u.name,u.phonenum from billing b inner join users u on u.id = b.user_id where date_format(b.billing_date,'%Y-%m') = '$month' order by b.id asc");
+         									while($row=$billing->fetch_assoc()):
+         									$chk =  $conn->query("SELECT b.*,u.name,u.phonenum from billing b inner join users u on u.id = b.user_id where date(b.billing_date) > '".$month."-01' and b.id != '".$row['id']."' and b.user_id = '".$row['user_id']."' order by date(b.billing_date) asc")->num_rows;
+                           ?>
+                       	<tr>
 
 
-              if($_POST['payment']=='Paid' && $row[$ay]!="Paid"){
-                $date="CurrentBalance";
-                $sql1 = mysqli_query($conn,"UPDATE Expenses SET price=price+'$aidat' WHERE date='$date'");
+         									<td class="">
+         										 <p> <b><?php echo date("M, Y",strtotime($row['billing_date'])) ?></b></p>
+         									</td>
+         									<td class="">
+         										 <p> İsim: <b><?php echo ucwords($row['name']) ?></b></p>
+         										 <p> İletişim: <b><?php echo ucwords($row['phonenum']) ?></b></p>
+         									</td>
+         									<td class="">
+         										 <p class="text-left"> <b><?php echo number_format($row['amount'],2)."₺" ?></b></p>
+         									</td>
+                           <td class="">
+                              <p class="text-left"> <b><?php echo $row['detail']?></b></p>
+                           </td>
+         									<td class="">
+         										<?php if($row['status'] == 1): ?>
+         										 <span class="badge badge-success">Ödenmiş</span>
+         										<?php else: ?>
+         										 <span class="badge badge-secondary">Ödenmemiş  </span>
+         										<?php endif; ?>
+         									</td>
+                           <td class="">
+                              <p class="text-left"> <b><?php echo ($row['payment_date'])?></b></p>
+                           </td>
+         									<td class="text-center">
+                             <?php if($row['status'] == 0): ?>
+                             <a href="adminpay.php?id=<?php echo $row['id'];?>">
+         										<button class="btn btn-sm btn-outline-primary view_billing" type="button" onClick="return confirm('Borcu ödemek istediğinizden emin misiniz?');">Öde</button> </a>
+                             <?php else: ?>
+                               <a href="">
+                               <button class="btn btn-sm btn-outline-danger view_billing" type="button" disabled>Ödenmiş</button> </a>
+                               <?php endif; ?>
+         										<?php if($chk <= 0): ?>
+         										<?php endif; ?>
+         									</td>
+         								</tr>
+         								<?php endwhile; ?>
+         							</tbody>
+         						</table>
+         					</div>
+         				</div>
+         			</div>
+         			<!-- Table Panel -->
+         		</div>
+         	</div>
 
-            header("Location:AdminDues.php?error=Ödeme Güncellendi");}
-              elseif($_POST['payment']=='Unpaid' && $row[$ay]!="Unpaid"){
-                  $date="CurrentBalance";
-                  $sql2 = mysqli_query($conn,"UPDATE Expenses SET price=price-'$aidat' WHERE date='$date'");
-header("Location:AdminDues.php?error=Ödeme Güncellendi");}
+         </div>
+         <style>
+         	td{
+         		vertical-align: middle !important;
+         	}
+         	td p{
+         		margin: unset
+         	}
+         	img{
+         		max-width:100px;
+         		max-height: :150px;
+         	}
+         </style>
 
-}
+         <script>
+         	$('#check_all').click(function(){
+         		if($(this).prop('checked') == true)
+         			$('[name="checked[]"]').prop('checked',true)
+         		else
+         			$('[name="checked[]"]').prop('checked',false)
+         	})
+         	$('[name="checked[]"]').click(function(){
+         		var count = $('[name="checked[]"]').length
+         		var checked = $('[name="checked[]"]:checked').length
+         		if(count == checked)
+         			$('#check_all').prop('checked',true)
+         		else
+         			$('#check_all').prop('checked',false)
+         	})
+           });
+         </script>
 
-//balance UPDATE
-
-
-ob_flush();?>
+       </div>
+     </div>
+     <footer class="page-footer font-small blue">
+       <div class="footer-copyright text-center py-3">© 2020 Copyright: Metehan Baş
+       </div>
+       <script type="text/javascript" src="./js/manager.js"></script>
+       <script type="text/javascript" src="./js/billing.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 
 </div>
