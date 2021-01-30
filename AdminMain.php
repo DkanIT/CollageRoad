@@ -136,7 +136,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <center><canvas id="canvas" width="400" height="400"
+    <center><canvas id="canvas" width="350" height="350"
     style="background-color:">
   </canvas></center>
 

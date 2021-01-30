@@ -102,26 +102,27 @@ img{
         <p style="color:black";> Manager of this year: Doğukan Şener <br>Communication:dogukansener991@gmail.com or 05153231132</p>
         <b> <p style="color:red;"> Don't call after "9 pm"</p></b> </center>
 
+          <?php
+        $userid=  $_SESSION['id'];
+        $billing = $conn->query("SELECT d.* from dues d inner join userinfo u on u.id = d.user_id where user_id =$userid AND situation ='0'");
+        $row = mysqli_num_rows($billing);
+
+        if($row == 0){?>
+          <div class="alert alert-success alert-dismissible" style="max-width:100%;margin-left:5%;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Well done! You have already paid all depts. </strong>
+      </div>
+    <?php } else { ?>
+      <div class="alert alert-danger alert-dismissible" style="max-width:100%;margin-left:5%;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Danger!</strong> You have unpaid depts. Please check due page.
+      </div>
+  <?php   } ?>
+
         </div>
 
       <div class="col-sm-8">
-        <br>
-        <?php
-      $userid=  $_SESSION['id'];
-      $billing = $conn->query("SELECT d.* from dues d inner join userinfo u on u.id = d.user_id where user_id =$userid AND situation ='0'");
-      $row = mysqli_num_rows($billing);
 
-      if($row == 0){?>
-        <div class="alert alert-success alert-dismissible" style="max-width:50%;margin-left:25%;">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Well done! You have already paid all depts. </strong>
-    </div>
-  <?php } else { ?>
-    <div class="alert alert-danger alert-dismissible" style="max-width:50%;margin-left:25%;">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Danger!</strong> You have unpaid depts. Please check due page.
-    </div>
-<?php   } ?>
         <div id="carouselExampleControls"  class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <?php $ret=mysqli_query($conn,"SELECT * FROM announcement");
