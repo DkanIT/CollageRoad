@@ -56,7 +56,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
     <a href="Main.php">Main</a>
 
-    <a href="Dues.php">Dues</a>
+    <a href="Dues.php?id=<?php echo $_SESSION['id'];?>">Dues</a>
 
     <a href="Administration.php">Administration</a>
 
@@ -75,7 +75,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 <div class="row">
   <div class="columnl">
-    <h2 style="color:White; text-align:center;"> Archive </h2>
+    <h2 style="color:Aqua; text-align:center;"> Archive </h2>
   <div class="vl">
 
     <div style="margin-left:300px" ><br><br>
@@ -91,7 +91,13 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
       <button value="edit" class="btn btn-primary btn-xs editbtn"><?php echo($date) ?></button></a>
 
     <br><br> <?php }
-
+    $sql1 = "SELECT * FROM expenses WHERE date='CurrentBalance'";
+    $totaldue = mysqli_query($conn, $sql1);
+    $duearray =mysqli_fetch_assoc($totaldue);
+    $sql2 = "SELECT * FROM expenses WHERE date='UnpaidDepts'";
+    $result = mysqli_query($conn, $sql2);
+    $duearray2 =mysqli_fetch_assoc($result);
+    $CurrentBalance= ($duearray['price']-$duearray2['price']);
 
     ?> <br>
     </div>
@@ -100,24 +106,13 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
   <div class="columnr">
     <h2 style="color:DarkBlue; text-align:center;">  Balance Details </h2>
-    <?php
-    $linesum=0;
-      $sql1 = "SELECT * FROM expenses WHERE date='CurrentBalance'";
-      $totaldue = mysqli_query($conn, $sql1);
-      $duearray =mysqli_fetch_assoc($totaldue);
-      $result = mysqli_query($conn, $sql);
-      while ($row = mysqli_fetch_assoc($result)) {
-      $linesum +=$row['price'];
-      $CurrentBalance= (2*$duearray['price'])-$linesum;
-
-    }
-
-    ?><center>
+  <center>
     <br>
-    <h4>Total Collected Dues >> <?php echo $duearray['price']  ?></h2>
-    <h4>CurrentBalance >> <?php echo $CurrentBalance; ?></h2>
+    <h4>Expected Income>> <?php echo number_format($duearray['price'],2)."₺";  ?></h4> <br>
+    <h4>Current Balance >> <?php echo number_format($CurrentBalance,2)."₺"; ?></h4><br>
+    <h4>Unpaid Depts >> <?php echo number_format($duearray2['price'],2)."₺"; ?></h4>
     <!--Expense details-->
-    <h2 style="color:DarkBlue;margin-top: 200px;text-align:center;"> Expense Details </h2>
+    <h2 style="color:DarkBlue;margin-top: 100px;text-align:center;"> Expense Details </h2>
     <?php if(isset($_GET['expenseid'])){
     $detailsid=$_GET['expenseid'];
     echo "<table border='1' class='center' >";

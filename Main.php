@@ -81,7 +81,7 @@ img{
 
       <a class="active" href="Main.php">Main</a>
 
-      <a href="Dues.php">Dues</a>
+      <a href="Dues.php?id=<?php echo $_SESSION['id'];?>">Dues</a>
 
       <a href="Administration.php">Administration</a>
 
@@ -105,7 +105,24 @@ img{
         </div>
 
       <div class="col-sm-8">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <br>
+        <?php
+      $userid=  $_SESSION['id'];
+      $billing = $conn->query("SELECT d.* from dues d inner join userinfo u on u.id = d.user_id where user_id =$userid AND situation ='0'");
+      $row = mysqli_num_rows($billing);
+
+      if($row == 0){?>
+        <div class="alert alert-success alert-dismissible" style="max-width:50%;margin-left:25%;">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Well done! You have already paid all depts. </strong>
+    </div>
+  <?php } else { ?>
+    <div class="alert alert-danger alert-dismissible" style="max-width:50%;margin-left:25%;">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Danger!</strong> You have unpaid depts. Please check due page.
+    </div>
+<?php   } ?>
+        <div id="carouselExampleControls"  class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <?php $ret=mysqli_query($conn,"SELECT * FROM announcement");
         $i=0;
@@ -131,11 +148,12 @@ img{
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <center><canvas id="canvas" width="400" height="400"
+        <center><canvas id="canvas" width="350" height="350"
         style="background-color:">
       </canvas></center>
 
     </div>
+
 
 
     </div>

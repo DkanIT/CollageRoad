@@ -6,7 +6,11 @@
 session_start();?>
 <link rel="stylesheet" href="background.css">
 <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 
 <style>
@@ -15,23 +19,7 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-  margin-left: 10%;
-}
-th {
-background-color: darkblue;
-  color: white;
-  padding: 10px;}
 
-td {
-  border: 1px color:Black ;
-  text-align: center;
-  padding: 8px;
-  background-color: #dddddd;
-}
 .logout {
   position: absolute;
     border: 1px solid aqua;
@@ -53,7 +41,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
     <a href="Main.php">Main</a>
 
-    <a class="active" href="Dues.php">Dues</a>
+    <a class="active" href="Dues.php?id=<?php echo $_SESSION['id'];?>">Dues</a>
 
     <a href="Administration.php">Administration</a>
 
@@ -69,64 +57,169 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
   </div>
 
-<h2 style="color:red;margin-top:20px;"> Dues in 2021 </h2>
+<div class="row">
+   <div class="col-sm-2">
+
+   </div>
+
+
+   <div class="col-sm-8">
 
 
 
 
+     <br><br>
+
+       <?php
 
 
 
-<div tyle="position: absolute">
-        <h1 style="color:Black" ; > <center><strong><b>Payment Board</b> </strong></center></h1>
+       $userid=$_GET['id'];
+       $query = "SELECT * from userinfo where id='".$userid."'";
+       $result = mysqli_query($conn, $query) or die ( mysqli_error());
+       $row = mysqli_fetch_assoc($result);
+       ?>
 
-        <?php
+       <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Un-Paid Depts
+        </button>
+      </h5>
+    </div>
 
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table table-bordered table-condensed table-hover">
 
-          echo "<table border='1' class='center' >";
-          echo "<th>" .'RoomNumber' ."</th>" ;
-          echo "<th>" .'FirstName' ."</th>" ;
-          echo "<th>" .'LastName' ."</th>" ;
-          echo "<th>" .'January' ."</th>" ;
-          echo "<th>" .'February' ."</th>" ;
-          echo "<th>" .'March' ."</th>" ;
-          echo "<th>" .'April' ."</th>" ;
-          echo "<th>" .'May' ."</th>" ;
-          echo "<th>" .'June' ."</th>" ;
-          echo "<th>" .'July' ."</th>" ;
-          echo "<th>" .'August' ."</th>" ;
-          echo "<th>" .'September' ."</th>" ;
-          echo "<th>" .'October' ."</th>" ;
-          echo "<th>" .'November' ."</th>" ;
-          echo "<th>" .'December' ."</th>" ;
+               <thead>
+                 <tr>
 
+                   <th class="">Date</th>
+                   <th class="">Users</th>
+                   <th class="">Amount</th>
+                   <th class="">Details</th>
+                   <th class="">Status</th>
+                   <th class="text-center">Payment</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <?php
 
-          $sql = "SELECT * FROM dues  ";
-  $result = mysqli_query($conn, $sql);
-  echo "<tr>";
-while ($row = mysqli_fetch_assoc($result)) {
-  foreach ($row as $field => $value) {
-      echo "<td>" . $value . "</td>";
-  }
-  /*  echo "<th>" .  $row['month'] . "</th>";
-
-    echo "<tr>";
-        echo "<td>" .$row['fname']. $row['lname'] . "</td>";
-        echo "<td>" . $row['payment'] ."</td>";
-
-    echo "<tr>";*/
-  echo "</tr>";
-}
-echo "</table>";
+                 $billing = $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where user_id =$userid AND situation ='0' order by d.id asc");
+                   while($row=$billing->fetch_assoc()):
+                   ?>
+                 <tr>
 
 
-?>
+                   <td class="">
+                      <p> <b><?php echo date("M, Y",strtotime($row['billing_date'])) ?></b></p>
+                   </td>
+                   <td class="">
+                      <p> Name: <b><?php echo ucwords($row['fname']." ".$row['lname'] ) ?></b></p>
+                   </td>
+                   <td class="">
+                      <p class="text-right"> <b><?php echo number_format($row['amount'],2)."₺" ?></b></p>
+                   </td>
+                   <td class="">
+                      <p class="text-left"> <b><?php echo $row['detail']?></b></p>
+                   </td>
+                   <td class="">
+                     <?php if($row['situation'] == 1): ?>
+                      <span class="badge badge-success">Paid</span>
+                     <?php else: ?>
+                      <span class="badge badge-secondary">Un-Paid</span>
+                     <?php endif; ?>
+                   </td>
+                   <td class="text-center">
+                      <a href="UserPay.php?id=<?php echo $row['id'];?>">
+                     <button class="btn btn-sm btn-outline-success view_billing" type="button" onClick="return confirm('Aidatı ödemek istediğinizden emin misiniz?');">Pay</button> </a>
+                   </td>
+                 </tr>
+                 <?php endwhile; ?>
+               </tbody>
+             </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Paid Depts
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table table-bordered table-condensed table-hover">
+          <thead>
+            <tr>
+
+              <th class="">Date</th>
+              <th class="">User</th>
+              <th class="">Amount</th>
+              <th class="">Detail</th>
+              <th class="">Status</th>
+              <th class="text-center">Payment Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+
+             $billing = $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where user_id =$userid AND situation ='1' order by d.id asc");
+              while($row=$billing->fetch_assoc()):
+              ?>
+            <tr>
+
+
+              <td class="">
+                 <p> <b><?php echo date("M, Y",strtotime($row['billing_date'])) ?></b></p>
+              </td>
+              <td class="">
+                 <p> Name: <b><?php echo ucwords($row['fname']." ".$row['lname'] ) ?></b></p>
+              </td>
+              <td class="">
+                 <p class="text-right"> <b><?php echo number_format($row['amount'],2)."₺" ?></b></p>
+              </td>
+              <td class="">
+                 <p class="text-left"> <b><?php echo $row['detail']?></b></p>
+              </td>
+              <td class="">
+                <?php if($row['situation'] == 1): ?>
+                 <span class="badge badge-success">Paid</span>
+                <?php else: ?>
+                 <span class="badge badge-secondary">Un-Paid</span>
+                <?php endif; ?>
+              </td>
+              <td class="">
+                 <p> <b><?php echo $row['payment_date'] ?></b></p>
+              </td>
+
+            </tr>
+            <?php endwhile; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 
 
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </body>
 </head>

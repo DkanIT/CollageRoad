@@ -58,7 +58,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
     <a href="Main.php">Main</a>
 
-    <a href="Dues.php">Dues</a>
+    <a href="Dues.php?id=<?php echo $_SESSION['id'];?>">Dues</a>
 
     <a class="active" href="Administration.php">Administration</a>
 

@@ -186,7 +186,7 @@ margin-left:140px;
 
     <div class="form">
 
-    <form action="AdminAction.php?id=<?php echo $row['id'];?>" method = "post">
+    <form action="AdminAction.php<?php echo isset($_GET['id']) ? '?id='. $row['id'] :  ''?>" method = "post">
 
 
       <input type="radio" id="admin" name="usertype" value="admin">
@@ -227,7 +227,7 @@ margin-left:140px;
           <?php if(isset($_GET['id'])):?>
           <button type="submit" name="update" id="update" value="update" class="signupbtn"> UPDATE </button>
         <?php else: ?>
-          <button type="submit" name="submit" id="submit" value="SUBMİT" class="signupbtn"> SUBMİT </button>
+          <button type="submit" name="submit" id="submit" value="submit" class="signupbtn"> SUBMİT </button>
         <?php endif; ?>
           <input type="button" onclick="location.href='AdminUsers.php';" class="cancelbtn" value="CANCEL" />  <br>  <br>
 

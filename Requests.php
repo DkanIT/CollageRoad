@@ -94,7 +94,7 @@ textarea {
 
         <a href="Main.php">Main</a>
 
-        <a href="Dues.php">Dues</a>
+        <a href="Dues.php?id=<?php echo $_SESSION['id'];?>">Dues</a>
 
         <a href="Administration.php">Administration</a>
 

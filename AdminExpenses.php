@@ -104,23 +104,23 @@ $result = mysqli_query($conn, $sql);
       <div class="vl">
 
         <?php
-        $linesum=0;
           $sql1 = "SELECT * FROM expenses WHERE date='CurrentBalance'";
           $totaldue = mysqli_query($conn, $sql1);
           $duearray =mysqli_fetch_assoc($totaldue);
-          $result = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_assoc($result)) {
-          $linesum +=$row['price'];
-          $CurrentBalance= (2*$duearray['price'])-$linesum;
+          $sql2 = "SELECT * FROM expenses WHERE date='UnpaidDepts'";
+          $result = mysqli_query($conn, $sql2);
+          $duearray2 =mysqli_fetch_assoc($result);
+          $CurrentBalance= ($duearray['price']-$duearray2['price']);
 
-        }
+
 
 ?><center>
   <br>
-<h4>Total Collected Dues >> <?php echo $duearray['price']  ?></h2>
-<h4>CurrentBalance >> <?php echo $CurrentBalance; ?></h2>
+  <h4>Expected Income>> <?php echo number_format($duearray['price'],2)."₺";  ?></h4> <br>
+  <h4>Current Balance >> <?php echo number_format($CurrentBalance,2)."₺"; ?></h4><br>
+  <h4>Unpaid Depts >> <?php echo number_format($duearray2['price'],2)."₺"; ?></h4>
   <!--Expense details-->
-  <h2 style="color:DarkBlue;margin-top: 200px;margin-right: 10px;text-align:center;"> Expense Details </h2>
+  <h2 style="color:DarkBlue;margin-top:100px;margin-right: 10px;text-align:center;"> Expense Details </h2>
   <?php if(isset($_GET['expenseid'])){
     $detailsid=$_GET['expenseid'];
       echo "<table border='1' class='center' >";

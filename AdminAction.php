@@ -46,10 +46,9 @@
 
 
 		    if ($conn->query($sql) === TRUE) {
-		      $sql = "INSERT INTO dues(doornumber,fname,lname) VALUES ('$doornumber','$fname','$lname')";
-		      if ($conn->query($sql) === TRUE) {
+
 		header("Location:AdminUsers.php?error=You created '$uname'");
-		}
+		
 		} else {
 		    header("Location:AdminUsers.php?error=New User Can not created.");}
 

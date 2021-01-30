@@ -11,18 +11,20 @@ if(isset($_POST['submit'])){
       $password = md5($_POST['password']);
       $cookiepass = ($_POST['password']);
 
-      $sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$user' AND password='$password'");
+      $sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$user' AND password='$password' AND status='active'");
 
 
   if(mysqli_num_rows($sql)==1){
 
       $qry = mysqli_fetch_array($sql);
       $_SESSION['username'] = $qry['username'];
+      $_SESSION['id'] = $qry['id'];
       $_SESSION['password'] = $qry['password'];
       $_SESSION['usertype'] = $qry['usertype'];
       $_SESSION['fname'] = $qry['fname'];
       $_SESSION['lname'] = $qry['lname'];
       $_SESSION['kullanıcıid'] = $qry['id'];
+
       if(!empty($_POST["remember"]))
        {
         setcookie ("username",$user,time()+ (10 * 365 * 24 * 60 * 60));
