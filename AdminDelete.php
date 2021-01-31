@@ -12,13 +12,6 @@ $date = date('Y-m-d H:i:s');
 
  $query_run = mysqli_query($conn,$sql);
 
-
-    $userdoor = mysqli_query($conn,"SELECT * FROM  userinfo WHERE id ='$uid'");
-    $row = mysqli_fetch_assoc($userdoor);
-    $doornumberr=$row['doornumber'];
-    $msg1=mysqli_query($conn,"delete from dues where doornumber='$doornumberr'");
-
-
 header("Location:AdminDeletedUsers.php");
 
 }
