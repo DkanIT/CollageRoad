@@ -16,6 +16,9 @@
 
   <style>
 
+form{
+
+}
   body{
     width: 98%;
     margin-left: auto;

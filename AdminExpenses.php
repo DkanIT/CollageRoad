@@ -110,16 +110,17 @@ $result = mysqli_query($conn, $sql);
           $sql2 = "SELECT * FROM expenses WHERE date='UnpaidDepts'";
           $result = mysqli_query($conn, $sql2);
           $duearray2 =mysqli_fetch_assoc($result);
-          $CurrentBalance= ($duearray['price']-$duearray2['price']);
+          $CurrentBalance= $duearray['price'];
+          $expectedincome =$duearray['price']+$duearray2['price']
 
 
 
 ?><center>
   <br>
-  <h4>Expected Income>> <?php echo number_format($duearray['price'],2)."₺";  ?></h4> <br>
+  <h4>Expected Income>> <?php echo number_format($expectedincome,2)."₺";  ?></h4> <br>
   <h4>Current Balance >> <?php echo number_format($CurrentBalance,2)."₺"; ?></h4><br>
   <h4>Unpaid Depts >> <?php echo number_format($duearray2['price'],2)."₺"; ?></h4>
-  <!--Expense details-->
+
   <h2 style="color:DarkBlue;margin-top:100px;margin-right: 10px;text-align:center;"> Expense Details </h2>
   <?php if(isset($_GET['expenseid'])){
     $detailsid=$_GET['expenseid'];
@@ -148,7 +149,7 @@ echo "</table>";}
 </center>
 
   <div class="column">
-    <h2 style="color:DarkBlue; text-align:center;"> Add Expenses </h2>
+    <h2 style="color:DarkBlue; text-align:center;"> Add Expenses Details </h2>
     <form style="margin-left:150px;margin-top:90px" action="AdminExpenses.php" method = "post">
     </select><br><br>
       <label style="color:DarkBlue;" for="month">Select month : </label>

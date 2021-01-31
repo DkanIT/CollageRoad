@@ -97,7 +97,8 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
     $sql2 = "SELECT * FROM expenses WHERE date='UnpaidDepts'";
     $result = mysqli_query($conn, $sql2);
     $duearray2 =mysqli_fetch_assoc($result);
-    $CurrentBalance= ($duearray['price']-$duearray2['price']);
+    $CurrentBalance= $duearray['price'];
+    $expectedincome =$duearray['price']+$duearray2['price']
 
     ?> <br>
     </div>
@@ -108,7 +109,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
     <h2 style="color:DarkBlue; text-align:center;">  Balance Details </h2>
   <center>
     <br>
-    <h4>Expected Income>> <?php echo number_format($duearray['price'],2)."₺";  ?></h4> <br>
+    <h4>Expected Income>> <?php echo number_format($expectedincome,2)."₺";  ?></h4> <br>
     <h4>Current Balance >> <?php echo number_format($CurrentBalance,2)."₺"; ?></h4><br>
     <h4>Unpaid Depts >> <?php echo number_format($duearray2['price'],2)."₺"; ?></h4>
     <!--Expense details-->
