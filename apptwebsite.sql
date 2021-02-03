@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 02 Şub 2021, 22:50:46
+-- Üretim Zamanı: 03 Şub 2021, 01:42:34
 -- Sunucu sürümü: 10.4.11-MariaDB
 -- PHP Sürümü: 7.4.2
 
@@ -105,6 +105,7 @@ INSERT INTO `expenses` (`expenseid`, `date`, `details`, `price`) VALUES
 CREATE TABLE `request` (
   `reqid` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `username` varchar(20) NOT NULL,
   `fname` varchar(10) NOT NULL,
   `lname` varchar(10) NOT NULL,
   `req` varchar(120) NOT NULL
@@ -114,10 +115,8 @@ CREATE TABLE `request` (
 -- Tablo döküm verisi `request`
 --
 
-INSERT INTO `request` (`reqid`, `date`, `fname`, `lname`, `req`) VALUES
-(67, '2020-12-23 16:54:19', ' Dogukan', 'SENER', 'çevrei düzenlemesi yapılsın'),
-(79, '2021-01-04 02:39:28', 'Dogukan ', 'SENER', 'Sokak hayvanları için yemlik ve suluklar yaptırılsın.'),
-(80, '2021-01-06 12:46:54', 'Dogukan', 'SENER', 'asdasdasdasd');
+INSERT INTO `request` (`reqid`, `date`, `username`, `fname`, `lname`, `req`) VALUES
+(81, '2021-02-03 00:38:14', 'dkan', 'Dogukan', 'SENER', 'Kapı önleri toparlansın');
 
 -- --------------------------------------------------------
 
@@ -185,7 +184,8 @@ ALTER TABLE `expenses`
 -- Tablo için indeksler `request`
 --
 ALTER TABLE `request`
-  ADD PRIMARY KEY (`reqid`);
+  ADD PRIMARY KEY (`reqid`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Tablo için indeksler `userinfo`
@@ -220,7 +220,7 @@ ALTER TABLE `expenses`
 -- Tablo için AUTO_INCREMENT değeri `request`
 --
 ALTER TABLE `request`
-  MODIFY `reqid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `reqid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `userinfo`
@@ -243,6 +243,12 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `dues`
   ADD CONSTRAINT `dues_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `userinfo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Tablo kısıtlamaları `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`username`) REFERENCES `userinfo` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

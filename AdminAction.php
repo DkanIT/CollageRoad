@@ -35,6 +35,10 @@
 		  if(mysqli_num_rows($sql)==1){
 				header("Location:AdminUsers.php?error=Room is Full.");
 			}
+			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$uname'");
+		if(mysqli_num_rows($sql)==1){
+			header("Location:AdminUsers.php?error=User name is taken.");
+		}
 			 elseif($cpass != $pass){
 
 						header("Location:AdminUsers.php?error=Passwords not match.");
@@ -48,7 +52,7 @@
 		    if ($conn->query($sql) === TRUE) {
 
 		header("Location:AdminUsers.php?error=You created '$uname'");
-		
+
 		} else {
 		    header("Location:AdminUsers.php?error=New User Can not created.");}
 

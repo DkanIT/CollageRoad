@@ -153,14 +153,14 @@ textarea {
 
 <?php
 
-  if (isset($_POST['submit']) && !empty($_POST['req'])) {
-    $fname = $_SESSION['fname'];
-    $lname = $_SESSION['lname'];
-    $req = $_POST['req'];
+if (isset($_POST['submit']) && !empty($_POST['req'])) {
+  $fname = $_SESSION['fname'];
+  $lname = $_SESSION['lname'];
+  $uname = $_SESSION['username'];
+  $req = $_POST['req'];
 
 
-    $sql = "INSERT INTO request(fname, lname, req) VALUES ('$fname','$lname','$req')";
-
+  $sql = "INSERT INTO request(username,fname, lname, req) VALUES ('$uname','$fname','$lname','$req')";
 
     //isset denen şey yukardaki o bu submit yaptıgın buttondaki name attribute sine eşit olucak.
     // ve form un içine alman lazım bu ekleyeceğin valueları. method unu da belirlemen lazım post diye çünkü isteğin post ve genelde post kullanılıyor.
