@@ -16,7 +16,7 @@ session_start();
 <title>login</title>
 
 
-<h2 style="color:White;"> Login Form </h2>
+<h2 > Login Form </h2>
 
 
 <form action="Check.php" method="POST">
@@ -26,17 +26,17 @@ session_start();
 
   <div class="container">
 
-    <label for="usarname" style="color:White;"> Username</label>
+    <label for="usarname" > Username</label>
     <input type="text" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" placeholder="Enter Username" name="username" required></br>
 
-    <label for="password" style="color:White;"> Password</label>
+    <label for="password" > Password</label>
     <input type="password" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>" placeholder="Enter Password" name="password" id="myInput" required>
     <input type="checkbox" onclick="myFunction()">
 
 
     <div class="form-group">
 
-         <label style="color:White;" for="rememberme">Remember me</label>
+         <label  for="rememberme">Remember me</label>
          <input type="checkbox" name="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> />
         </div>
 

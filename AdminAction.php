@@ -37,7 +37,7 @@
 			}
 			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$uname'");
 		if(mysqli_num_rows($sql)==1){
-			header("Location:AdminUsers.php?error=User name is taken.");
+			header("Location:AdminUsers.php?error=User name is already taken.");
 		}
 			 elseif($cpass != $pass){
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="background.css">
+
   <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="background.css">
   <?php include "DbConn.php";
   session_start();?>
 <title>Request</title>
@@ -35,7 +36,6 @@ h2 {
 
 }
 h13{
-color:White;
 margin-left: 10px;
 text-transform: capitalize;
 font-weight: bold;
@@ -82,8 +82,8 @@ textarea {
 
 <body>
 
-    <h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-    <p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+    <h1 > <Strong>Şenerler Apt. Management Page </Strong></h1>
+    <p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
     <div class="user"><?php
     echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
@@ -117,10 +117,6 @@ textarea {
   <h2 style="color:Black;"> <Strong>Request</Strong></h2>
 
         <?php
-
-
-
-
         $sql = "SELECT * FROM request ORDER BY reqid DESC";
         $result = mysqli_query($conn, $sql);
   echo "<tr>";

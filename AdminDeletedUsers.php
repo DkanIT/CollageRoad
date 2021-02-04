@@ -7,10 +7,11 @@
 <?php include "DbConn.php";
 session_start();?>
 
-  <link rel="stylesheet" href="background.css">
+
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="userform.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+          <link rel="stylesheet" href="background.css">
 <body>
   <style>
   table {
@@ -83,8 +84,8 @@ p2{
 
   </style>
 
-  <h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-  <p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+  <h1> <Strong>Şenerler Apt. Management Page </Strong></h1>
+  <p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
   <div class="user"><?php
   echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>")?>
 

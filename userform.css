@@ -6,13 +6,8 @@ font-size: 20px;
 position: absolute;
 text-align: center;
 font-size: 18px;
-border-style: solid;
-border-width:18px;
-border: 12px solid;
-  border-image-slice: 1;
 
-  border-image-source: linear-gradient(to right, darkblue, aqua);
-background-image:linear-gradient(to left ,aqua, darkblue);
+
 position: absolute;
 top:30%;
 left: 60%;
@@ -24,7 +19,7 @@ text-align: center;
 }
 .delete {
   padding: 7px 10px;
-  background-color: darkblue;
+  background-color: #80bdce;
   float: left;
   text-align: center;
   font-family: fantasy;
@@ -33,11 +28,11 @@ text-align: center;
 }
 .cancelbtn {
   padding: 14px 20px;
-  background-color: darkblue;
+  background-color: #cc7ab1;
 }
 .signupbtn {
   padding: 14px 20px;
-  background-color: aqua;
+  background-color: #80bdce;
 }
 .cancelbtn, .signupbtn {
   float: left;

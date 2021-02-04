@@ -5,10 +5,11 @@ session_start();
 
 ?>
 <head>
-  <link rel="stylesheet" href="background.css">
+
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="background.css">
 <title>Administration</title>
 <style>
 body{
@@ -22,7 +23,7 @@ textarea {
   width: 320px;
 }
 h13{
-color:White;
+color:Black;
 margin-left: 10px;
 text-transform: capitalize;
 font-weight: bold;
@@ -53,8 +54,8 @@ h2 {
 </style>
 <body>
 
-<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-<p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+  <h1> <Strong>Şenerler Apt. Management Page </Strong></h1>
+  <p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
 <div class="user"><?php
 echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
@@ -114,7 +115,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 <form action="AdminAdministration.php" method = "post">
 
-    <label for="announcement" style="color:White;"><center>Announcement Text Area</center></label><br>
+    <label for="announcement" ><center>Announcement Text Area</center></label><br>
   <textarea  type="text" id="announcement" name="announcement"  maxlength="180">  </textarea><br><br>
   <button type="submit" name="submit"> SUBMİT </button>
 

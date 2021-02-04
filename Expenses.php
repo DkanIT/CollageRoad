@@ -4,10 +4,11 @@
   <title>Expenses</title>
   <?php include "DbConn.php";
   session_start();?>
-  <link rel="stylesheet" href="background.css">
+
   <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="background.css">
 <body>
 
   <style >
@@ -43,9 +44,8 @@ text-align: center;}
   }
 </style>
 
-
-<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-<p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+<h1 > <Strong>Şenerler Apt. Management Page </Strong></h1>
+<p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
 <div class="user"><?php
 echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
@@ -75,7 +75,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 <div class="row">
   <div class="columnl">
-    <h2 style="color:Aqua; text-align:center;"> Archive </h2>
+    <h2 style="color:DarkBlue; text-align:center;"> Archive </h2>
   <div class="vl">
 
     <div style="margin-left:300px" ><br><br>
@@ -83,7 +83,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
     $sql = "SELECT * FROM expenses ORDER BY expenseid ASC";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-    $date=$row['date'];
+    $date=$row['expense_date'];
 
     ?>
 
@@ -91,10 +91,10 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
       <button value="edit" class="btn btn-primary btn-xs editbtn"><?php echo($date) ?></button></a>
 
     <br><br> <?php }
-    $sql1 = "SELECT * FROM expenses WHERE date='CurrentBalance'";
+    $sql1 = "SELECT * FROM expenses WHERE expense_date='CurrentBalance'";
     $totaldue = mysqli_query($conn, $sql1);
     $duearray =mysqli_fetch_assoc($totaldue);
-    $sql2 = "SELECT * FROM expenses WHERE date='UnpaidDepts'";
+    $sql2 = "SELECT * FROM expenses WHERE expense_date='UnpaidDepts'";
     $result = mysqli_query($conn, $sql2);
     $duearray2 =mysqli_fetch_assoc($result);
     $CurrentBalance= $duearray['price'];
@@ -120,7 +120,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
     echo "<th>".'Date'. "</th>";
     echo "<th>".'Details'."</th>";
     echo "<th>".'Price'."</th>"."<br>";
-    $sql = "SELECT date,details,price FROM expenses WHERE expenseid='$detailsid'";
+    $sql = "SELECT expense_date,details,price FROM expenses WHERE expenseid='$detailsid'";
     $result = mysqli_query($conn, $sql);
     echo "<tr>";
     while ($row = mysqli_fetch_assoc($result)) {

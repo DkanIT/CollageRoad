@@ -4,21 +4,41 @@
   <title>Dues</title>
   <?php include "DbConn.php";
   session_start();
-  ob_start();?>
+  ob_start();
+  $month = isset($_GET['month']) ? date('Y-m',strtotime($_GET['month'].'-01')) : date('Y-m') ;
+  $page1=1;
 
-  <link rel="stylesheet" href="background.css">
-  <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  if(isset($_GET['page'])){
+  $page =$_GET['page'];
+
+  if($page == "1"){
+    $page1=0;
+  }
+  else{
+    $page1 = ($page*10)-10;
+  }
+
+  }
+  else{
+    $page1=0;
+  }
+  ?>
+
+
+
+
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script type = 'text/javascript' src = 'https://www.gstatic.com/charts/loader.js'></script>
+    <script type = 'text/javascript'>google.charts.load('current', {packages: ['corechart']});</script>
+      <link rel="stylesheet" href="background.css">
 
   <style>
 
-form{
-
-}
   body{
     width: 98%;
     margin-left: auto;
@@ -35,8 +55,8 @@ form{
   </style>
 
 <body>
-  <h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-  <p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+  <h1> <Strong>Şenerler Apt. Management Page </Strong></h1>
+  <p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
   <div class="user"><?php
   echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
@@ -60,7 +80,7 @@ form{
 
 
       <div class="topnav-right" style="right::0;">
-      <a  href="Login.php">Logout</a>
+      <a   href="Login.php">Logout</a>
 
     </div>
 
@@ -89,27 +109,22 @@ form{
            padding: 10px;
          }
          </style>
-         	<div class="col-lg-12">
-         		<div class="row mb-4 mt-4">
-         			<div class="col-md-12">
 
-         			</div>
-         		</div>
          		<div class="row">
 
                <?php if (isset($_GET['error'])) { ?>
                           <p style="z-index:1;margin-left:43%;color:red"class="error"><?php echo $_GET['error']; } ?></p>
          			<div class="col-md-12">
 
-         				<div class="card" style="margin-top:-4%;  background-color: #e5eef4 !important;">
+         				<div class="card"  style="margin-top:-3%;background-color: #e5eef4 !important;">
          					<div class="card-header">
                      <h3><b>Add Payment<b></h3>
          						<span class="">
-                       <form class="" action="adddue.php" method="post">
+                       <form class="p-3 mb-2 text-dark" action="adddue.php" method="post">
 
                          <div class="col-md-2 offset-md-3">
-                   					<label for="" class="control-label">Date</label>
-                     					<input type="month" value="<?php echo isset($_GET['billing_date']) ? date('Y-m',strtotime($_GET['billing_date'].'-01')) :date('Y-m'); ?>" class="form-control" name="billing_date">
+                   					<label  for="" class="control-label">Date</label>
+                     					<input style="width:105%" type="month" value="<?php echo isset($_GET['billing_date']) ? date('Y-m',strtotime($_GET['billing_date'].'-01')) :date('Y-m'); ?>" class="form-control" name="billing_date">
                    			</div>
                          <div class="col-md-2 offset-md-5" style="margin-top:-4.3em;">
                            <label for="" class="control-label">Amount</label>
@@ -130,8 +145,10 @@ form{
          					<div class="card-body">
                        <h3><b>Monthly Dues Table<b></h3>
          						<div class="row form-group">
-                       <div class="col-md-8 offset-md-3">
+                       <div class="col-md-8 offset-md-3" style="margin-left:36.5%;">
                          <form class="" action="filterdue.php" method="post">
+                           <div class="col-md-2 float-left" id = "container" style = "width: 550px; min-height: 100px; margin-left:-50%;">
+              </div>
                          <div class="col-md-4 offset-md-3">
                            <label for="" class="control-label">Date</label>
                            <input type="month" class="form-control" name="month"  value="<?php echo isset($_GET['month']) ? date('Y-m',strtotime($_GET['month'].'-01')) :date('Y-m'); ?>" required>
@@ -139,7 +156,65 @@ form{
                          <div class="col-md-2 offset-md-7" style="margin-top:-4.3em;">
                                <label for="" class="control-label">&nbsp</label>
                                <button class="btn btn-primary btn-block " id="filter" type="">Filter</button>
+
                                </div>
+                               <?php
+                                                   $result = mysqli_query($conn, "SELECT SUM(amount) AS amount_sum FROM dues WHERE date_format(billing_date,'%Y-%m') = '$month'");
+                                                   $row = mysqli_fetch_assoc($result);
+                                                   $sum = $row['amount_sum']; // Total debt of this.month
+
+                                                   $result = mysqli_query($conn, "SELECT SUM(amount) AS paid_sum FROM dues WHERE date_format(billing_date,'%Y-%m') = '$month' AND situation ='1' ");
+                                                   $row = mysqli_fetch_assoc($result);
+                                                   $paid = $row['paid_sum']; // Total paid of this.month
+
+                                                   if($paid == ""){
+                                                     $paid = 0;
+                                                   }
+
+                                                   $unpaid = $sum-$paid;
+
+
+                                                   ?>
+
+
+                      <script type = 'text/javascript' src = 'https://www.gstatic.com/charts/loader.js'> </script>
+                      <script type = 'text/javascript'>  google.charts.load('current', {packages: ['corechart']}); </script>
+
+
+                                 <script language = 'JavaScript'>
+                                   var paid = <?php echo $paid ?>;
+                                   var unpaid = <?php echo $unpaid ?>;
+                                   var sum = <?php echo $sum?>;
+
+                                    function drawChart() {
+                                       // Define the chart to be drawn.
+                                       var data = new google.visualization.DataTable();
+                                       data.addColumn('string', 'Browser');
+                                       data.addColumn('number', 'Percentage');
+                                       data.addRows([
+                                          ['Expected payment amount',0],
+                                          ['Unpaid ', unpaid],
+                                          ['Chrome',0],
+                                          ['Paid', paid],
+                                          ['Opera', 0],
+                                          ['Others', 0]
+                                       ]);
+
+                                       // Set chart options
+                                       var options = {
+                                          'title':'<?php echo date('M, Y',strtotime($month)).' Payment Graph'; ?>',
+                                          'width':550,
+                                          'height':300,
+                                          pieHole: 0.40,
+                                          'backgroundColor':'#e5eef4'
+                                       };
+
+                                       // Instantiate and draw the chart.
+                                       var chart = new google.visualization.PieChart(document.getElementById('container'));
+                                       chart.draw(data, options);
+                                    }
+                                     google.charts.setOnLoadCallback(drawChart);
+                                 </script>
                            </form>
                          </div>
 
@@ -161,7 +236,13 @@ form{
          							<tbody>
          								<?php
                         $month = isset($_GET['month']) ? date('Y-m',strtotime($_GET['month'].'-01')) : date('Y-m') ;
-                        $billing = $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where date_format(d.billing_date,'%Y-%m') = '$month' order by situation asc");
+                        $billing = $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where date_format(d.billing_date,'%Y-%m') = '$month' order by situation asc limit $page1,10");
+                        $billingcounter = $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where date_format(d.billing_date,'%Y-%m') = '$month' order by d.id asc");
+
+                        $count = mysqli_num_rows($billingcounter);
+                         $a =$count/10;
+                         $a = ceil($a);
+
 
          									while($row=$billing->fetch_assoc()):
          									$chk =  $conn->query("SELECT d.*,u.fname,u.lname from dues d inner join userinfo u on u.id = d.user_id where date(d.billing_date) > '".$month."-01' and d.id != '".$row['id']."' and d.id = '".$row['id']."' order by date(d.billing_date) asc")->num_rows;
@@ -206,6 +287,11 @@ form{
          								<?php endwhile; ?>
          							</tbody>
          						</table>
+                    <?php
+                   for($b=0;$b < $a;$b++) {
+                   ?> <a href="AdminDues.php?month=<?php echo $month; ?>&page=<?php echo $b+1; ?>" style="text-decoration:none;"><?php echo $b+1; ?></a> <?php
+                   }
+                    ?>
          					</div>
          				</div>
          			</div>
@@ -246,10 +332,6 @@ form{
 
        </div>
      </div>
-
-
-
-
 
 
 

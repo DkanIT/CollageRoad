@@ -7,10 +7,12 @@
 <?php include "DbConn.php";
 session_start();?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
   <link rel="stylesheet" href="background.css">
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" href="userform.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
 
 <body>
   <style>
@@ -20,13 +22,13 @@ session_start();?>
     width: 100%;
     font-size: 15px;
 
-
   }
 
   body{
     width: 98%;
     margin-left: auto;
     margin-right: auto;
+    color: black;
   }
 
   td {
@@ -36,7 +38,7 @@ session_start();?>
     padding: 6px;
   text-align: center;}
     th {
-    background-color: darkblue;
+    background-color: #80bdce;
     border: 2px solid #dddddd;
       color: white;
       padding: 8px;
@@ -75,15 +77,15 @@ margin-left:140px;
 
   </style>
 
-  <h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-  <p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
+  <h1> <Strong>Şenerler Apt. Management Page </Strong></h1>
+  <p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
   <div class="user"><?php
   echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']. "<br>")?>
 
   </div>
 
 
-    <div class="topnav" style="border: 2px solid black;color:white;padding:10px;">
+    <div class="topnav" style="border: 2px solid black;padding:10px;">
 
       <a  href="AdminMain.php">Main</a>
 
@@ -109,8 +111,9 @@ margin-left:140px;
 
   <div class="row">
   <div class="columnl">
-    <div id="usertable">
-              <h1 style="color:Black;margin-top:30px;" > <center><b>User List</b> </center></h1>
+    <h1 style="color:Black;margin-top:30px;" > <center><b>User List</b> </center></h1>
+    <div class="table-responsive" id="usertable">
+
             <button style="color:white;" class="delete" onclick="location.href='AdminDeletedUsers.php'" >Deleted Users</button>
             <?php
 
@@ -183,6 +186,8 @@ margin-left:140px;
 
     </div></div>
   <div class="columnr">
+<div class="form-responsive">
+
 
     <div class="form">
 

@@ -4,13 +4,12 @@
 <title>Dues</title>
 <?php include "DbConn.php";
 session_start();?>
-<link rel="stylesheet" href="background.css">
+
 <link rel="stylesheet" href="navbar.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="background.css">
 <body>
 
 <style>
@@ -29,9 +28,8 @@ body{
 
 
 </style>
-<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page </Strong></h1>
-<p style="color:White;">  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p>
-<div class="user"><?php
+<h1 > <Strong>Şenerler Apt. Management Page </Strong></h1>
+<p >  <Strong>Welcome to our webpage which you can follow our announcements and changes. </Strong></p><div class="user"><?php
 echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 </div>
@@ -82,17 +80,17 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
        <div class="accordion" id="accordionExample">
   <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
+    <div class="card-header" id="headingOne"  style="background-color: #e5eef4 !important;">
+      <h5 class="mb-0"  style="background-color: #e5eef4 !important;">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           Un-Paid Depts
         </button>
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"  style="background-color: #e5eef4 !important;">
       <div class="card-body">
-        <table class="table table-bordered table-condensed table-hover">
+        <table class="table table-bordered table-condensed table-hover"  style="background-color: #e5eef4 !important;">
 
                <thead>
                  <tr>
@@ -133,7 +131,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
                       <span class="badge badge-secondary">Un-Paid</span>
                      <?php endif; ?>
                    </td>
-                   <td class="text-center">
+                   <td class="text-center" >
                       <a href="UserPay.php?id=<?php echo $row['id'];?>">
                      <button class="btn btn-sm btn-outline-success view_billing" type="button" onClick="return confirm('Aidatı ödemek istediğinizden emin misiniz?');">Pay</button> </a>
                    </td>
@@ -147,16 +145,16 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
 
 
   <div class="card">
-    <div class="card-header" id="headingTwo">
+    <div class="card-header" id="headingTwo"  style="background-color: #e5eef4 !important;">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"  style="background-color: #e5eef4 !important;">
           Paid Depts
         </button>
       </h5>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample"  style="background-color: #e5eef4 !important;">
       <div class="card-body">
-        <table class="table table-bordered table-condensed table-hover">
+        <table class="table table-bordered table-condensed table-hover"  style="background-color: #e5eef4 !important;">
           <thead>
             <tr>
 

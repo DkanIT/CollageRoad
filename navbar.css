@@ -7,7 +7,7 @@
 
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 6px 20px;
   text-decoration: none;
@@ -15,17 +15,17 @@
 }
 
 .topnav a:hover {
-background-color: aqua;
-  color: black;
+background-color: #80bdce;
+
 }
 
 .topnav a.active {
-  background-color: darkblue;
-  color: white;
+  background-color: #80bdce;
+
 }
 .topnav-right {
   float: right;
-  background-color: blue;
+  background-color: #80bdce;
 }
 .user {
     position: absolute;
