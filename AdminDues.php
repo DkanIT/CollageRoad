@@ -298,20 +298,7 @@
          			<!-- Table Panel -->
          		</div>
          	</div>
-          <?php
-                                                    $result = mysqli_query($conn, "SELECT SUM(amount) AS amount_sum FROM dues WHERE situation ='0'");
-                                                    $row = mysqli_fetch_assoc($result);
-                                                    $sum = $row['amount_sum'];
-                                                    $sql2 = mysqli_query($conn,"UPDATE expenses SET price='$sum' WHERE date='UnpaidDepts' ");
-
-                                                    $result = mysqli_query($conn, "SELECT SUM(amount) AS paid_sum FROM dues WHERE  situation ='1' ");
-                                                    $row = mysqli_fetch_assoc($result);
-                                                    $paid = $row['paid_sum']; // Total paid of this.month
-                                                    $sql3 = mysqli_query($conn,"UPDATE expenses SET price='$paid' WHERE date='CurrentBalance' ");
-                                                    $unpaid = $sum-$paid;
-
-
-                                                    ?>
+                                                    
 
 
          </div>

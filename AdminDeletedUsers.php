@@ -34,7 +34,7 @@ session_start();?>
     padding: 6px;
   text-align: center;}
     th {
-    background-color: darkblue;
+    background-color: #80bdce;
     border: 2px solid #dddddd;
       color: white;
       padding: 8px;
@@ -116,11 +116,24 @@ p2{
     </div>
 
 
-  <div class="row">
-  <div class="columnl">
-    <div id="usertable">
-            <h1 style="color:Black;margin-top:30px;" > <center><b>Deleted User List</b> </center></h1>
+
+            <?php
+
+            $userscounter = $conn->query("SELECT * from userinfo where status='inactive' and usertype='user' ");
+            $user = mysqli_num_rows($userscounter);?>
+
+          <div class="row">
+          <div class="columnl">
+    <h1 style="color:Black;margin-top:30px;" > <center><b>Deleted User List</b> </center></h1>
+            <div class="table-responsive" id="usertable">
+              <div class="card-group" >
+              <div class="card text-white bg-primary mb-2" style="max-width:13rem;">
+            <div class="card-body">
+            <h5 class="card-title">Number of Inactive Users : <?php echo $user; ?></h5>
             <button style="color:white;" class="delete" onclick="location.href='AdminUsers.php'" >Current Users</button>
+            </div>
+            </div>
+            </div>
             <?php
 
               echo "<table border='1' class='center' >";
@@ -159,13 +172,18 @@ p2{
 
 
 </div>
-<div class="columnr">
+<div class="columnr" style="margin-left:10%;">
 
   <img src="manage.png" alt="Avatar" class="avatar">
-<h3><< Information About Deleted Users >></h3>
-<p2> -These users are deleted from your website and also your database. <br> -So, you can create on them new residents using by their doornumber.
 
-</p2>
+
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">Information About Deleted Users!</h4>
+    <p>-These users are deleted from your website and also your current active database. </p>
+    <hr>
+    <p class="mb-0">-So, you can create on them new residents using by their doornumber.</p>
+  </div>
+
 </div>
 </div>
 

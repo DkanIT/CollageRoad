@@ -35,7 +35,7 @@
 		  if(mysqli_num_rows($sql)==1){
 				header("Location:AdminUsers.php?error=Room is Full.");
 			}
-			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$uname'");
+			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE  username='$uname' ");
 		if(mysqli_num_rows($sql)==1){
 			header("Location:AdminUsers.php?error=User name is already taken.");
 		}

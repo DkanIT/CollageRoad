@@ -5,7 +5,26 @@
   <title>Users</title>
 
 <?php include "DbConn.php";
-session_start();?>
+session_start();
+
+$page1=1;
+
+if(isset($_GET['page'])){
+$page =$_GET['page'];
+
+if($page == "1"){
+  $page1=0;
+}
+else{
+  $page1 = ($page*7)-7;
+}
+
+}
+else{
+  $page1=0;
+}?>
+
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
   <link rel="stylesheet" href="background.css">
@@ -107,15 +126,33 @@ margin-left:140px;
     </div>
 
     </div>
+    <?php
 
+    $userscounter = $conn->query("SELECT * from userinfo where status='active' and usertype='user' ");
+    $user = mysqli_num_rows($userscounter);
+    $adminscounter = $conn->query("SELECT * from userinfo where status='active' and usertype='admin' ");
+    $admin = mysqli_num_rows($adminscounter);?>
 
   <div class="row">
   <div class="columnl">
     <h1 style="color:Black;margin-top:30px;" > <center><b>User List</b> </center></h1>
     <div class="table-responsive" id="usertable">
-
-            <button style="color:white;" class="delete" onclick="location.href='AdminDeletedUsers.php'" >Deleted Users</button>
+      <div class="card-group" style="margin-bottom:-30px">
+      <div class="card text-white bg-primary mb-2" style="max-width:13rem;">
+    <div class="card-body">
+    <!--<h5 class="card-title">Number of Active Admins : <?php echo $admin; ?></h5>-->
+    <h5 class="card-title">Number of Active Users : <?php echo $user; ?></h5>
+    <button style="color:white;" class="delete" onclick="location.href='AdminDeletedUsers.php'" >Deleted Users</button>
+    </div>
+    </div>
+    </div>
             <?php
+
+            $usercounter = $conn->query("SELECT * from userinfo where status='active' ");
+            $count = mysqli_num_rows($usercounter);
+
+             $a =$count/7;
+             $a = ceil($a);
 
               echo "<table border='1' class='center' >";
               echo "<th>" .'ID' ."</th>" ;
@@ -127,10 +164,11 @@ margin-left:140px;
               echo "<th>".'Mail'. "</th>" ;
               echo "<th>".'Phone'. "</th>";
               echo "<th>".'Create Date'. "</th>";
+              echo "<th>".'Depts'."</th>";
               echo "<th>".'Edit'."</th>";
               echo "<th>".'Delete'."</th>"."<br>";
 
-            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date FROM userinfo WHERE status='active' ORDER BY usertype ASC,doornumber ASC";
+            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date FROM userinfo WHERE status='active' ORDER BY usertype ASC,doornumber ASC limit $page1,7";
             $result = mysqli_query($conn, $sql);
       echo "<tr>";
             while ($row = mysqli_fetch_assoc($result)) {
@@ -140,7 +178,12 @@ margin-left:140px;
 
     }
 
-?><td>
+?>
+<td>
+    <a href="AdminUsersDept.php?id=<?php echo $row['id'];?>">
+    <button value="money" class="btn btn-success btn-xs editbtn"><i class="fa fa-money"></i></button></a>
+  </td>
+<td>
     <a href="AdminUsers.php?id=<?php echo $row['id'];?>">
     <button value="edit" class="btn btn-primary btn-xs editbtn"><i class="fa fa-pencil"></i></button></a>
   </td>
@@ -157,7 +200,11 @@ margin-left:140px;
 
 
     }echo "</table>";
-    ?>
+
+    for($b=0;$b < $a;$b++) {
+    ?> <a href="AdminUsers.php?page=<?php echo $b+1; ?>" style="text-decoration:none;"><?php echo $b+1; ?></a> <?php
+    }?>
+
   <br><br>
 
   <?php
@@ -237,7 +284,7 @@ margin-left:140px;
           <input type="button" onclick="location.href='AdminUsers.php';" class="cancelbtn" value="CANCEL" />  <br>  <br>
 
 
-        <br><h3 style="color:White;"><Strong> <?php if (isset($_GET['error'])) {
+        <br><h3 ><Strong> <?php if (isset($_GET['error'])) {
            echo $_GET['error'];
          } ?>  </Strong></h3>
 
