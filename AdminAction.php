@@ -30,19 +30,21 @@
 
 
 
-
-				$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE doornumber='$doornumber'");
-		  if(mysqli_num_rows($sql)==1){
-				header("Location:AdminUsers.php?error=Room is Full.");
-			}
-			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE  username='$uname' ");
+			$sql = mysqli_query($conn,"SELECT * FROM userinfo WHERE username='$uname' ");
+			$sql1 = mysqli_query($conn,"SELECT * FROM userinfo WHERE doornumber='$doornumber' ");
 		if(mysqli_num_rows($sql)==1){
 			header("Location:AdminUsers.php?error=User name is already taken.");
 		}
-			 elseif($cpass != $pass){
 
-						header("Location:AdminUsers.php?error=Passwords not match.");
-			 }
+
+		elseif (mysqli_num_rows($sql1)==1){
+						header("Location:AdminUsers.php?error=Room is Full.");
+					}
+		elseif ($cpass != $pass){
+			header("Location:AdminUsers.php?error=Passwords not match.");
+		}
+
+
 
 		    else{
 

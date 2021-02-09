@@ -16,7 +16,7 @@ if($page == "1"){
   $page1=0;
 }
 else{
-  $page1 = ($page*7)-7;
+  $page1 = ($page*8)-8;
 }
 
 }
@@ -151,7 +151,7 @@ margin-left:140px;
             $usercounter = $conn->query("SELECT * from userinfo where status='active' ");
             $count = mysqli_num_rows($usercounter);
 
-             $a =$count/7;
+             $a =$count/8;
              $a = ceil($a);
 
               echo "<table border='1' class='center' >";
@@ -168,7 +168,7 @@ margin-left:140px;
               echo "<th>".'Edit'."</th>";
               echo "<th>".'Delete'."</th>"."<br>";
 
-            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date FROM userinfo WHERE status='active' ORDER BY usertype ASC,doornumber ASC limit $page1,7";
+            $sql = "SELECT id,usertype,doornumber,username,fname,lname,mail,phone,create_date FROM userinfo WHERE status='active' ORDER BY usertype ASC,doornumber ASC limit $page1,8";
             $result = mysqli_query($conn, $sql);
       echo "<tr>";
             while ($row = mysqli_fetch_assoc($result)) {
