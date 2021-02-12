@@ -5,7 +5,23 @@
   <title>Users</title>
 
 <?php include "DbConn.php";
-session_start();?>
+session_start();
+$page1=1;
+
+if(isset($_GET['page'])){
+$page =$_GET['page'];
+
+if($page == "1"){
+  $page1=0;
+}
+else{
+  $page1 = ($page*8)-8;
+}
+
+}
+else{
+  $page1=0;
+}?>
 
 
   <link rel="stylesheet" href="navbar.css">
@@ -120,7 +136,11 @@ p2{
             <?php
 
             $userscounter = $conn->query("SELECT * from userinfo where status='inactive' and usertype='user' ");
-            $user = mysqli_num_rows($userscounter);?>
+            $user = mysqli_num_rows($userscounter);
+
+            $a =$user/8;
+            $a = ceil($a);
+            ?>
 
           <div class="row">
           <div class="columnl">
@@ -164,7 +184,9 @@ p2{
 
 
     }echo "</table>";
-    ?>
+    for($b=0;$b < $a;$b++) {
+    ?> <a href="AdminDeletedUsers.php?page=<?php echo $b+1; ?>" style="text-decoration:none;"><?php echo $b+1; ?></a> <?php
+    }?>
   <br><br>
 
 

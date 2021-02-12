@@ -13,7 +13,7 @@ $newexpense = $conn->query("INSERT INTO expenses (expense_date,details,amount) V
 
 
 
-header("Location:AdminExpenses.php");
+header("Location:AdminExpenses.php?month=$month");
 
 }
 else {

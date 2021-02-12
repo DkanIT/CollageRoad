@@ -243,6 +243,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");
                    <button  style="width:105%;" class="btn btn-primary btn-block " id="filter" type="">Filter</button>
 
                    </div>
+                 </form>
                         </div>
                           </div>
                         </center>
@@ -302,36 +303,36 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");
     </div>
 
 
-  <div class="col-md3" >
-      <br>
-    <center><h3><b>Add Payment<b></h3>
-   <span class="">
-      <form class="p-3 mb-2 text-dark" action="addexpense.php" method="post">
-
-        <div>
-           <label  for="" class="control-label">Date</label>
-             <input  style="width:45%" type="month" value="<?php echo isset($_GET['expense_date']) ? date('Y-m',strtotime($_GET['expense_date'].'-01')) :date('Y-m'); ?>" class="form-control" name="expense_date">
-       </div>
-        <div  >
-          <label for="" class="control-label">Amount</label>
-          <input type="text" style="width:30%" class="form-control" name="amount" id="exampleInputPassword1" placeholder="₺">
-        </div>
-        <div>
-          <label for="" class="control-label">Details</label>
-          <textarea type="textarea"  rows="6" cols="50" size="150" class="form-control" name="detail" id="exampleInputPassword1" placeholder="Açıklama"></textarea>
-
-        </div>
+    <div class="col-md3" >
         <br>
-        <div>
-          <button style="" class="btn btn-primary btn-block btn-sm col-sm-2" type="" id="new_expense" onClick="return confirm('Borç eklemek istediğinize emin misiniz?');"> <i class="fa fa-plus"> Add Bill</i></button>
-        </div>
+      <center><h3><b>Add Payment<b></h3>
+     <span class="">
+        <form class="p-3 mb-2 text-dark" action="addexpense.php" method="post">
 
-        </form>
-      </center>
-</span>
+          <div>
+             <label  for="" class="control-label">Date</label>
+               <input  style="width:45%" type="month" value="<?php echo isset($_GET['expense_date']) ? date('Y-m',strtotime($_GET['expense_date'].'-01')) :date('Y-m'); ?>" class="form-control" name="expense_date">
+         </div>
+          <div  >
+            <label for="" class="control-label">Amount</label>
+            <input type="text" style="width:30%" class="form-control" name="amount" id="exampleInputPassword1" placeholder="₺">
+          </div>
+          <div>
+            <label for="" class="control-label">Details</label>
+            <textarea type="textarea"  rows="6" cols="50" size="150" class="form-control" name="detail" id="exampleInputPassword1" placeholder="Açıklama"></textarea>
+
+          </div>
+          <br>
+          <div>
+            <button style="" class="btn btn-primary btn-block btn-sm col-sm-2" type="" id="new_expense" onClick="return confirm('Borç eklemek istediğinize emin misiniz?');"> <i class="fa fa-plus"> Add Bill</i></button>
+          </div>
+
+          </form>
+        </center>
+  </span>
 
 
-</div>
+  </div>
 
 
 <style>

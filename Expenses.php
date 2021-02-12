@@ -214,7 +214,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
        <center>
     <div class="row">
        <div class="col-md-8 " >
-         <form class=" form-group" action="userfilterexpenses.php" method="post">
+         <form class="form-group" action="userfilterexpenses.php" method="post">
 
          <div class="col-md-4 offset-md-3" >
            <label for="" class="control-label">Date</label>
@@ -225,6 +225,7 @@ echo("Mae govannen ".$_SESSION['fname']." " .$_SESSION['lname']."<br>");?>
                <button  style="width:105%;" class="btn btn-primary btn-block " id="filter" type="">Filter</button>
 
                </div>
+             </form>
                     </div>
                       </div>
                     </center>
