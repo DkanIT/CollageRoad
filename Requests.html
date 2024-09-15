@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+body {
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+label { display: block; width: 100px; }
+</style>
+
+<body>
+
+<h1 style="color:White;"> <Strong>Şenerler Apt. Management Page</Strong></h1>
+
+<p style="color:White;"> <Strong> Welcome our webpage which you can follow our announcements and changes.</p>
+
+<div>
+
+
+
+<div style="border: 1px solid black;color:black;padding:10px;">
+
+<a href="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Main.html"> 
+<button onclick="document.location='default.asp'">MainPage</button> </a> 
+
+<a href="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Dues.html"> 
+<button onclick="document.location='default.asp'">Dues</button> </a> 
+
+
+<a href="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Administration.html"> 
+<button onclick="document.location='default.asp'">Administration</button> </a> 
+
+<a href="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Requests.html"> 
+<button onclick="document.location='default.asp'">Requests</button> </a> 
+
+<a href="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Expenses.html"> 
+<button onclick="document.location='default.asp'">Expenses</button> </a>
+
+</div>
+
+<div>
+<body style="color:White;"onload="get()">
+
+<p id="savedText"> </p>
+<hr style="height:4px;color:Black;background-color:Black">
+<p id="openedText"> </p>
+<hr style="height:4px;color:Black;background-color:Black">
+
+
+</body>
+</div>
+
+
+<div style="position: absolute; bottom: 5px">
+
+<form action="file:///C:/Users/doguk/OneDrive/Masaüstü/WebSite/Requests.html">
+
+  <label for="fname" style="color:White;";>First name:</label><br>
+  <input type="text" id="fname" name="fname" size="25" value=" "><br>
+  <label for="lname" style="color:White";>Last name:</label><br>
+  <input type="text" id="lname" name="lname" size="25" value=" "><br><br>
+  <label for="req" style="color:White";>Request:</label><br>
+  <input type="text" id="req" request="req" maxlength="120" size="150" value=" "><br><br>
+	 
+  <button onclick="save()"> SUBMİT </button>
+
+</form> 
+
+</div>
+
+
+</body>
+
+<script>
+
+var storedItem = localStorage.getItem("storedItem");
+
+function save(){
+
+var Item= document.getElementById("fname").value+" " +document.getElementById("lname").value+" "+"<br>"+document.getElementById("req").value;
+localStorage.setItem("storedItem",Item);
+document.getElementById("savedText").innerHTML = Item +"a";
+
+}
+
+function get(){
+
+
+localStorage.getItem("storedItem");
+document.getElementById("openedText").innerHTML = storedItem+"dwe ";
+
+}
+
+
+</script>
+
+
+
+
+</html>
